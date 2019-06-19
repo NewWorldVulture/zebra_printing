@@ -1,0 +1,11 @@
+^XA
+
+^LL300^MMT,n
+
+^FO20,200^ADN,36,20^FD abcde^FS
+
+^FO20,240^ADN,36,20^FD bcdea^FS
+
+^FO20,280^ADN,36,20^FD cdeab^FS
+
+^XZ
