@@ -1,20 +1,20 @@
+# Created by Ada
+
 import win32print
 from subprocess import Popen, PIPE
 
 def get_online_printer():
-    # Uses Powershell to grab all online printers from 
+    # Calls Powershell script to grab all online printers from Win32_Printer
     process = Popen(['Powershell', '. "./online_printers";', '&getOnlinePrinters($_)'],
         stdout=PIPE, stderr=PIPE)
     stdout, stderr = process.communicate()
-    stdout = stdout.strip()
-    print(stdout)
-    return stdout #stdout returns as bytecode. Decode it to utf8
+    # stdout returns as byte-object. Strip trailing newline and decode it to utf8
+    return stdout.strip().decode("utf-8")
 
 def send_document(filename):
+    # Try to get printer. If it fails, print out exact error.
     try:
-        printer_choice = get_online_printer().decode("utf-8")
-        p = win32print.OpenPrinter(printer_choice)
-        print()
+        p = win32print.OpenPrinter(get_online_printer())
         try:
             #open printer, print, close out printer 
             win32print.StartDocPrinter(p, 1,("Printer Test", None, "RAW"))
