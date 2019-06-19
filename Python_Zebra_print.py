@@ -27,5 +27,5 @@ def send_document(filename):
     except Exception as e:
         print("Could not find printer: ", e)
         
-with open("path/to/file/with/zpl/commands.zpl.txt") as filename:
+with open("PrinterTestFile.zpl") as filename:
     send_document(bytes(filename.read(), "utf-8"))
